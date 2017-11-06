@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="dbconfig.properties"></properties>
+    <!-- 可以为class或者package设置别名，若为package，别名默认为去除包名 -->
+    <typeAliases>
+        <typeAlias type="demo.mybatis.vo.User" alias="User"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+<!--                 <property name="driver" value="com.mysql.jdbc.Driver" /> -->
+<!--                 <property name="url" value="jdbc:mysql://112.74.198.75/mybatis" /> -->
+<!--                 <property name="username" value="wanan" /> -->
+<!--                 <property name="password" value="wanan@123" /> -->
+                 <property name="driver" value="${driver}" />
+                 <property name="url" value="${url}" />
+                 <property name="username" value="${username}" />
+                 <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+         <!-- 注册userMapper.xml文件，userMapper.xml位于me.gacl.mapping这个包下，所以resource写成me/gacl/mapping/userMapper.xml-->
+         <mapper resource="demo/mybatis/mapping/userMapper.xml"/>
+         <mapper class="demo.mybatis.mapping.UserMapperInterface"/>
+         <mapper resource="demo/mybatis/mapping/orderMapper.xml"/>
+         <mapper resource="demo/mybatis/mapping/classMapper.xml"/>
+     </mappers>
+</configuration>
